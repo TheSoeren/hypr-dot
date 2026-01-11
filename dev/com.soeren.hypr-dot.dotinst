@@ -1,0 +1,14 @@
+{
+	"name": "My Dotfiles DEV",
+	"id": "com.soeren.hypr-dot.dev",
+	"description": "Dotfiles for nvim, hyprland and ml4w",
+	"version":"0.1",
+	"author": "Fabian Imhof",
+	"homepage": "",
+	"dependencies": "",
+	"source": "projects/hypr-dot",
+	"subfolder": "dotfiles",
+	"setupscript":"setup.sh",
+	"restore":[],
+	"settings":[]
+}
