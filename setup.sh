@@ -104,7 +104,7 @@ echo "==> Setting up Caps Lock ↔ Escape swap using udevmon with intercept and 
 # Ensure interception-tools is installed
 if ! command -v intercept >/dev/null 2>&1; then
     echo "Installing interception-tools..."
-    sudo pacman -Sy --needed interception-tools
+    sudo pacman -Sy --needed interception-tools interception-caps2esc
 fi
 
 UDEVMON_CONF="$HOME/.config/udevmon/udevmon.yaml"
