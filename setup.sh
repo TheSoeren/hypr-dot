@@ -68,3 +68,13 @@ echo "IMPORTANT:"
 echo "1. Start tmux"
 echo "2. Press prefix (Ctrl-Space) + I to reinstall/update plugins if needed"
 echo "3. Restart tmux completely to apply catppuccin theme"
+
+echo "==> Installing Oh My Zsh..."
+if [[ -d "$HOME/.oh-my-zsh" ]]; then
+  echo "Oh My Zsh already installed."
+else
+  RUNZSH=no CHSH=no KEEP_ZSHRC=yes \
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+echo "==> Done!"
