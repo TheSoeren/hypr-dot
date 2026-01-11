@@ -134,3 +134,7 @@ fi
 
 echo "==> Done."
 echo "You may need to restart your terminal to use the font."
+
+echo "==> Installing ripgrep..."
+sudo pacman -S ripgrep
+echo "==> Done."
