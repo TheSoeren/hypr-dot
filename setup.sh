@@ -71,17 +71,8 @@ else
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-echo "==> Installing Zsh syntax highlighting plugins..."
-
+echo "==> Installing Zsh plugins and themes..."
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
-
-# zsh-syntax-highlighting
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-    "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
-else
-  echo "zsh-syntax-highlighting already installed."
-fi
 
 # fast-syntax-highlighting
 if [ ! -d "$ZSH_CUSTOM/plugins/fast-syntax-highlighting" ]; then
@@ -91,14 +82,18 @@ else
   echo "fast-syntax-highlighting already installed."
 fi
 
-echo "==> Configuring .zshrc plugins..."
-
-ZSHRC="$HOME/.zshrc"
-
+# powerlevel10k
+if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
+else
+  echo "powerlevel10k already installed."
+fi
 echo "==> Done."
+
 echo "==> Installing ripgrep..."
 sudo pacman -S ripgrep
 echo "==> Done."
+
 echo "IMPORTANT:"
 echo "1. Start tmux"
 echo "2. Press prefix (Ctrl-Space) + I to reinstall/update plugins if needed"
