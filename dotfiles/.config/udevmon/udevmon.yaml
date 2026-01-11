@@ -1,0 +1,11 @@
+devices:
+  - "*"
+
+profiles:
+  - &caps2esc_profile
+    grab: true
+    run:
+      - "intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE"
+    device:
+      events:
+        EV_KEY: [KEY_CAPSLOCK, KEY_ESC]

@@ -63,12 +63,6 @@ echo "==> Killing temporary tmux session..."
 tmux kill-session -t __tpm_install
 
 echo "==> Done."
-echo ""
-echo "IMPORTANT:"
-echo "1. Start tmux"
-echo "2. Press prefix (Ctrl-Space) + I to reinstall/update plugins if needed"
-echo "3. Restart tmux completely to apply catppuccin theme"
-
 echo "==> Installing Oh My Zsh..."
 if [[ -d "$HOME/.oh-my-zsh" ]]; then
   echo "Oh My Zsh already installed."
@@ -133,8 +127,55 @@ if command -v fc-cache >/dev/null 2>&1; then
 fi
 
 echo "==> Done."
-echo "You may need to restart your terminal to use the font."
 
 echo "==> Installing ripgrep..."
 sudo pacman -S ripgrep
 echo "==> Done."
+echo "==> Setting up Caps Lock ↔ Escape swap using udevmon with intercept and caps2esc..."
+
+# Ensure interception-tools is installed
+if ! command -v intercept >/dev/null 2>&1; then
+    echo "Installing interception-tools..."
+    sudo pacman -Sy --needed interception-tools
+fi
+
+# Create udevmon config directory
+UDEVMON_CONF="$HOME/.config/udevmon/udevmon.yaml"
+
+echo "==> Creating systemd user service for udevmon..."
+
+# Systemd user service directory
+SYSTEMD_USER_DIR="$HOME/.config/systemd/user"
+mkdir -p "$SYSTEMD_USER_DIR"
+
+UDEVMON_SERVICE="$SYSTEMD_USER_DIR/udevmon.service"
+cat > "$UDEVMON_SERVICE" << EOF
+[Unit]
+Description=Monitor input devices for launching tasks
+Wants=systemd-udev-settle.service
+After=systemd-udev-settle.service
+Documentation=man:udev(7)
+
+[Service]
+ExecStart=$(command -v udevmon) -c $UDEVMON_CONF
+Nice=-20
+Restart=on-failure
+OOMScoreAdjust=-1000
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# Enable and start the user service
+systemctl --user daemon-reload
+systemctl --user enable --now udevmon.service
+
+echo "==> Done."
+echo ""
+echo "You may need to log out and log back in for full effect."
+echo "You may need to restart your terminal to use the font."
+echo ""
+echo "IMPORTANT:"
+echo "1. Start tmux"
+echo "2. Press prefix (Ctrl-Space) + I to reinstall/update plugins if needed"
+echo "3. Restart tmux completely to apply catppuccin theme"
