@@ -6,7 +6,7 @@
 	"author": "Fabian Imhof",
 	"homepage": "",
 	"dependencies": "",
-	"source": "projects/hypr-dot",
+	"source": "https://github.com/TheSoeren/hypr-dot.git",
 	"subfolder": "dotfiles",
 	"setupscript":"setup.sh",
 	"restore":[],
