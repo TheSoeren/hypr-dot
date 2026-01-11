@@ -77,4 +77,28 @@ else
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-echo "==> Done!"
+echo "==> Installing Zsh syntax highlighting plugins..."
+
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+
+# zsh-syntax-highlighting
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+    "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+else
+  echo "zsh-syntax-highlighting already installed."
+fi
+
+# fast-syntax-highlighting
+if [ ! -d "$ZSH_CUSTOM/plugins/fast-syntax-highlighting" ]; then
+  git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
+    "$ZSH_CUSTOM/plugins/fast-syntax-highlighting"
+else
+  echo "fast-syntax-highlighting already installed."
+fi
+
+echo "==> Configuring .zshrc plugins..."
+
+ZSHRC="$HOME/.zshrc"
+
+echo "==> Done."
