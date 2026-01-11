@@ -102,3 +102,35 @@ echo "==> Configuring .zshrc plugins..."
 ZSHRC="$HOME/.zshrc"
 
 echo "==> Done."
+echo "==> Installing MesloLGS Nerd Font..."
+
+# Define version and font directory
+FONT_NAME="MesloLGS NF"
+FONT_DIR="$HOME/.local/share/fonts"
+
+# Create font directory if it doesn't exist
+mkdir -p "$FONT_DIR"
+
+# Define GitHub release URL
+MESLO_RELEASE="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip"
+TMP_ZIP="$(mktemp)"
+
+# Download font zip
+echo "Downloading $FONT_NAME..."
+curl -L -o "$TMP_ZIP" "$MESLO_RELEASE"
+
+# Unzip to font directory
+echo "Installing fonts to $FONT_DIR..."
+unzip -o "$TMP_ZIP" -d "$FONT_DIR"
+
+# Clean up
+rm "$TMP_ZIP"
+
+# Refresh font cache
+echo "Refreshing font cache..."
+if command -v fc-cache >/dev/null 2>&1; then
+    fc-cache -fv "$FONT_DIR"
+fi
+
+echo "==> Done."
+echo "You may need to restart your terminal to use the font."
