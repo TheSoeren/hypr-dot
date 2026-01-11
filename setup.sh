@@ -139,7 +139,6 @@ if ! command -v intercept >/dev/null 2>&1; then
     sudo pacman -Sy --needed interception-tools
 fi
 
-# Create udevmon config directory
 UDEVMON_CONF="$HOME/.config/udevmon/udevmon.yaml"
 
 echo "==> Creating systemd user service for udevmon..."
