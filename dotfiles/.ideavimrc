@@ -1,0 +1,75 @@
+let mapleader = " "
+set relativenumber
+set clipboard=unnamedplus
+set scrolloff=10
+set visualbell
+set noerrorbells
+set NERDTree
+
+nnoremap <Esc> :action ExpandCollapseToggleAction<cr>
+
+" Go to previous [D]iagnostic message
+nnoremap [d :action GotoPreviousError<cr>
+" Go to next [D]iagnostic message
+nnoremap ]d :action GotoNextError<cr>
+" Show diagnostic [E]rror messages
+nnoremap <leader>e :action ShowErrorDescription<cr>
+" Open diagnostic [Q]uickfix list
+nnoremap <leader>q :action ProblemsView.QuickFixes<cr>
+
+nnoremap qq <Esc>
+
+" Enable moving highlighted lines
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Keep cursor in place when appending next line
+nnoremap J mzJ`z
+
+" Keep highlighted search term in the center of the screen
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Replace highlighted text with yanked one
+xnoremap <leader>pp "_dP
+
+" Make sure yanking works with d
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
+" Find files
+nnoremap <leader>sf :action GotoFile<cr>
+" Find in files
+nnoremap <leader>sg :action FindInPath<cr>
+
+" Code Action (Show error<cr>
+nnoremap <leader>cl :action ShowErrorDescription<cr>
+" Code Action (Show quick suggestions<cr>
+nnoremap <leader>ca :action ShowIntentionActions<cr>
+" Show Refactoring context
+nnoremap <leader>rt :action Refactorings.QuickListPopupAction<CR>
+" Run any command
+nnoremap <leader>ra :action RunAnything<CR>
+
+" Show commit tool window
+nnoremap <leader>pg :action ActivateCommitToolWindow<cr>
+" Show project structure window
+nnoremap <leader>pv :action SelectInProjectView<cr>
+
+" Git Blame
+nnoremap <leader>ga :action Annotate<CR>
+nnoremap <leader>gb :action Git.Branches<CR>
+
+" Harpoon keybinds
+nnoremap <leader><C-h> :action SetHarpoon1<cr>
+nnoremap <leader><C-j> :action SetHarpoon2<cr>
+nnoremap <leader><C-k> :action SetHarpoon3<cr>
+nnoremap <leader><C-l> :action SetHarpoon4<cr>
+
+nnoremap <C-h> :action GotoHarpoon1<cr>
+nnoremap <C-j> :action GotoHarpoon2<cr>
+nnoremap <C-k> :action GotoHarpoon3<cr>
+nnoremap <C-l> :action GotoHarpoon4<cr>
+
+nnoremap gc :action CommentByLineComment<cr>
+vnoremap gc :action CommentByLineComment<cr>
