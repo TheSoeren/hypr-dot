@@ -63,6 +63,13 @@ return {
       end,
       desc = 'Debug: See last session result.',
     },
+    {
+      '<leader>de',
+      function()
+        require('dapui').eval()
+      end,
+      desc = 'Debug: evaluate element under cursor',
+    },
   },
   config = function()
     local dap = require 'dap'
@@ -125,5 +132,21 @@ return {
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
+
+    dap.configurations.cpp = {
+      -- LadyBird config
+      {
+        name = 'Debug Ladybird',
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+          return vim.fn.getcwd() .. '/Build/debug/bin/Ladybird'
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = {},
+        runInTerminal = false,
+      },
+    }
   end,
 }
