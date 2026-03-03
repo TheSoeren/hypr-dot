@@ -16,7 +16,7 @@ cd_to_project() {
   fi
 
   # Define the base directory for projects
-  local PROJECTS_DIR="/home/soeren/projects"
+  local PROJECTS_DIR="/home/fim/projects"
 
   # Construct the full path to the project
   local PROJECT_PATH="$PROJECTS_DIR/$1"
@@ -39,7 +39,7 @@ _start_project_cmp()
 {
   local cur
   cur="${COMP_WORDS[COMP_CWORD]}"
-  local projects_dir="/home/soeren/projects"
+  local projects_dir="/home/fim/projects"
   
   if [ -d "$projects_dir" ]; then
     local projects=$(ls -1 "$projects_dir")
@@ -57,7 +57,7 @@ complete -F _start_project_cmp cd_to_project
 ### PNPM CLI ###
 ################
 
-export PNPM_HOME="/home/soeren/.local/share/pnpm"
+export PNPM_HOME="/home/fim/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
