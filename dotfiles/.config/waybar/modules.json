@@ -212,7 +212,7 @@
   },
   // Clock
   "clock": {
-    "format": "{:%H:%M %a}",
+    "format": "{:%a, %d.%m. %H:%M}",
     "on-click": "flatpak run com.ml4w.calendar",
     "timezone": "",
     "tooltip": false
