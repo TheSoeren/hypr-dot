@@ -1,3 +1,5 @@
+" https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
+
 let mapleader = " "
 set relativenumber
 set clipboard=unnamedplus
@@ -6,18 +8,21 @@ set visualbell
 set noerrorbells
 set NERDTree
 
-nnoremap <Esc> :action ExpandCollapseToggleAction<cr>
+nnoremap <Esc> :action ExpandCollapseToggleAction<CR>
 
 " Go to previous [D]iagnostic message
-nnoremap [d :action GotoPreviousError<cr>
+nnoremap [d :action GotoPreviousError<CR>
 " Go to next [D]iagnostic message
-nnoremap ]d :action GotoNextError<cr>
+nnoremap ]d :action GotoNextError<CR>
 " Show diagnostic [E]rror messages
-nnoremap <leader>e :action ShowErrorDescription<cr>
+nnoremap <leader>e :action ShowErrorDescription<CR>
 " Open diagnostic [Q]uickfix list
-nnoremap <leader>q :action ProblemsView.QuickFixes<cr>
+nnoremap <leader>q :action ProblemsView.QuickFixes<CR>
 
-nnoremap qq <Esc>
+" Toggle [B]reakpoint
+nnoremap <leader>b :action ToggleLineBreakpoint<CR>
+" Debbuger Tool Window
+nnoremap <leader>sb :action ChooseDebugConfiguration<CR>
 
 " Enable moving highlighted lines
 vnoremap J :m '>+1<CR>gv=gv
@@ -38,38 +43,55 @@ nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
 " Find files
-nnoremap <leader>sf :action GotoFile<cr>
+nnoremap <leader>sf :action GotoFile<CR>
 " Find in files
-nnoremap <leader>sg :action FindInPath<cr>
+nnoremap <leader>sg :action FindInPath<CR>
+" Execute IDE action
+nnoremap <leader>sa :action GotoAction<CR>
+" Execute Gradle task
+nnoremap <leader>st :action Gradle.ExecuteTask<CR>
 
-" Code Action (Show error<cr>
-nnoremap <leader>cl :action ShowErrorDescription<cr>
-" Code Action (Show quick suggestions<cr>
-nnoremap <leader>ca :action ShowIntentionActions<cr>
+" Code Action Show error
+nnoremap <leader>cl :action ShowErrorDescription<CR>
+" Code Action Show quick suggestions
+nnoremap <leader>ca :action ShowIntentionActions<CR>
 " Show Refactoring context
 nnoremap <leader>rt :action Refactorings.QuickListPopupAction<CR>
 " Run any command
 nnoremap <leader>ra :action RunAnything<CR>
 
 " Show commit tool window
-nnoremap <leader>pg :action ActivateCommitToolWindow<cr>
+nnoremap <leader>pg :action ActivateCommitToolWindow<CR>
 " Show project structure window
-nnoremap <leader>pv :action SelectInProjectView<cr>
+nnoremap <leader>pv :action SelectInProjectView<CR>
 
-" Git Blame
-nnoremap <leader>ga :action Annotate<CR>
-nnoremap <leader>gb :action Git.Branches<CR>
+" Git
+nnoremap <leader>gb :action Annotate<CR>
+nnoremap <leader>gf :action Git.Fetch<CR>
+nnoremap <leader>gh :action Vcs.History<CR>
+nnoremap <leader>gd :action Vcs.ShowDiffWithLocal<CR>
+nnoremap <leader>gp :action Git.Pull<CR>
+nnoremap [c :action VcsShowPrevChangeMarker<CR>
+nnoremap ]c :action VcsShowNextChangeMarker<CR>
+
+" Goto
+nnoremap gri :action GotoImplementation<CR>
+nnoremap grd gd
+nnoremap gru :action ShowUsages<CR>
+
+" Terminal
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
 
 " Harpoon keybinds
-nnoremap <leader><C-h> :action SetHarpoon1<cr>
-nnoremap <leader><C-j> :action SetHarpoon2<cr>
-nnoremap <leader><C-k> :action SetHarpoon3<cr>
-nnoremap <leader><C-l> :action SetHarpoon4<cr>
+nnoremap <leader><C-h> :action SetHarpoon1<CR>
+nnoremap <leader><C-j> :action SetHarpoon2<CR>
+nnoremap <leader><C-k> :action SetHarpoon3<CR>
+nnoremap <leader><C-l> :action SetHarpoon4<CR>
 
-nnoremap <C-h> :action GotoHarpoon1<cr>
-nnoremap <C-j> :action GotoHarpoon2<cr>
-nnoremap <C-k> :action GotoHarpoon3<cr>
-nnoremap <C-l> :action GotoHarpoon4<cr>
+nnoremap <C-h> :action GotoHarpoon1<CR>
+nnoremap <C-j> :action GotoHarpoon2<CR>
+nnoremap <C-k> :action GotoHarpoon3<CR>
+nnoremap <C-l> :action GotoHarpoon4<CR>
 
-nnoremap gc :action CommentByLineComment<cr>
-vnoremap gc :action CommentByLineComment<cr>
+nnoremap gc :action CommentByLineComment<CR>
+vnoremap gc :action CommentByLineComment<CR>
