@@ -8,12 +8,21 @@ Based on ml4w with custom configuration.
 
 ## udev caps and escape swap
 
-1. Create the file `/etc/udev/hwdb.d/90-swap-caps-esc.hwdb` and add the following content:
+1. Create the file `/etc/udev/hwdb.d/90-keyboard-ext.hwdb` and add the following content:
 
 ```
 evdev:input:b*
  KEYBOARD_KEY_70029=capslock
  KEYBOARD_KEY_70039=esc
+```
+
+(Optional for laptop keyboard) Create the file `/etc/udev/hwdb.d/90-keyboard-int.hwdb` and add the following content:
+
+```
+evdev:atkbd:*
+ KEYBOARD_KEY_3a=esc
+ KEYBOARD_KEY_01=capslock
+
 ```
 
 2. Reload the config:
